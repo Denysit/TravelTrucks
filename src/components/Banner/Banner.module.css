@@ -50,6 +50,7 @@ flex-direction: column;
     flex-direction: row;
 }
 
+
 .button_home:hover {
 background: var(--button-color-hover)
 }
