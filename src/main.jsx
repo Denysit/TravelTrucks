@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store, persistor } from "../src/redux/store.js";
@@ -9,7 +9,7 @@ import "./index.css";
 import "modern-normalize";
 
 createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
@@ -17,5 +17,5 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 );
