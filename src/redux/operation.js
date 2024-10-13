@@ -3,7 +3,7 @@ import axios from "axios";
 
 const api = axios.create({ baseURL: "https://api.example.com" });
 
-const fetchCampers = createAsyncThunk(
+export const fetchCampers = createAsyncThunk(
   "campers/fetchAll",
   async (_, thunkApi) => {
     try {
@@ -14,5 +14,3 @@ const fetchCampers = createAsyncThunk(
     }
   }
 );
-
-export default { fetchCampers };

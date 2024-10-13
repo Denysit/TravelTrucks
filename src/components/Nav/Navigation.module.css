@@ -1,0 +1,45 @@
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: #F2F4F7;
+    
+    
+}
+
+.logo {
+    display: flex;
+    color: var(--main-color);
+    font-weight: var(--font-weight-semibold);
+    font-size: 24px;
+}
+
+.logo_two {
+    color: var(--text);
+}
+
+.link{
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+
+.isActive {
+    color: var(--button-color-hover);
+}
+
+.nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
