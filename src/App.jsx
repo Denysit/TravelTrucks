@@ -5,7 +5,7 @@ import Navigation from "./components/Nav/Navigation";
 import "./App.css";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-// const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound/PageNotFound"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
 const DetailInfoCampers = lazy(() =>
   import("./pages/DetailInfoCampers/DetailInfoCampers")
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:id" element={<DetailInfoCampers />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
     </div>
