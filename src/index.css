@@ -14,7 +14,9 @@
     --badges: #f2f4f7;
     --gray: #6c717b;
     --gray-light: #dadde1;
+    
 }
+
 
 
 * {
@@ -25,33 +27,40 @@
 
 
 
-body {
-    padding: 10px;
+ body {
     font-family: var(--font-family);
     font-weight: var(--font-weight-regular);
+    height: 100%;
+    width: 100%;
     
 }
 
-html,
-body {
-    height: 100%;
-    width: 100%;
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
+div,
+ul,
+ol {
+  box-sizing: border-box;
 }
 
 ul,
 ol {
-    list-style: none;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 
