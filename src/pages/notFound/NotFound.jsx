@@ -1,9 +1,12 @@
 import css from "./NotFound.module.css";
+import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
     <div>
-      <h1>NOT FOUND</h1>
+      <Link to="/" className={css.link}>
+        Back to Homepage
+      </Link>
     </div>
   );
 }
