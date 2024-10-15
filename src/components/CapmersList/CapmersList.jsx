@@ -1,24 +1,42 @@
 import css from "./CapmersList.module.css";
-import { selectAllCampers } from "../../redux/selectors";
-import { useSelector } from "react-redux";
+import {
+  selectAllCampers,
+  selectCampersStatus,
+  selectCampersError,
+} from "../../redux/selectors";
 import CampersCard from "../CampersCard/CampersCard";
+import { fetchCampers } from "../../redux/operation";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CapmersList() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const dispatch = useDispatch();
+  const status = useSelector(selectCampersStatus);
+  const error = useSelector(selectCampersError);
   const campers = useSelector(selectAllCampers);
 
-  console.log(campers);
+  useEffect(() => {
+    dispatch(fetchCampers({ page: currentPage }));
+  }, [dispatch, currentPage]);
 
-  if (!campers || campers.length === 0) {
-    return <p>No campers available</p>;
-  }
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
   return (
-    <ul>
-      {campers.map((camper, index) => (
-        <li key={index}>
-          <CampersCard camper={camper} />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {campers.map((camper, index) => (
+          <li key={index}>
+            <CampersCard camper={camper} />
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleLoadMore}>Load More</button>
+      {status && <p>Loading...</p>}
+      {error && <p>Error message: {error}</p>}
+    </div>
   );
 }

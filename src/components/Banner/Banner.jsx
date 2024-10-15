@@ -1,4 +1,5 @@
 import css from "./Banner.module.css";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -8,7 +9,9 @@ export default function Banner() {
         <h2 className={css.sub_text}>
           You can find everything you want in our catalog
         </h2>
-        <button className={css.button_home}>View Now</button>
+        <Link to="/catalog">
+          <button className={css.button_home}>View Now</button>
+        </Link>
       </div>
     </div>
   );

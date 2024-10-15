@@ -7,10 +7,14 @@ const api = axios.create({
 
 export const fetchCampers = createAsyncThunk(
   "campers/fetchAll",
-  async (_, thunkApi) => {
+  async ({ page = 1, limit = 4 }, thunkApi) => {
     try {
-      const response = await api.get("/campers");
-      console.log(response.data.items);
+      const response = await api.get("/campers", {
+        params: {
+          page,
+          limit,
+        },
+      });
       return response.data.items;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

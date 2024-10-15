@@ -16,7 +16,7 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.loading = false;
-        state.campers = action.payload;
+        state.campers = [...state.campers, ...action.payload];
       })
       .addCase(fetchCampers.rejected, (state, action) => {
         state.loading = false;
