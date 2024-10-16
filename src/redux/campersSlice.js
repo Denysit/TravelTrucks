@@ -4,6 +4,18 @@ import { fetchCampers } from "./operation";
 const campersSlice = createSlice({
   name: "campers",
   initialState: {
+    favorite: [],
+    filters: {
+      AC: true,
+      bathroom: true,
+      kitchen: true,
+      TV: true,
+      radio: true,
+      refrigerator: true,
+      microwave: true,
+      gas: true,
+      water: true,
+    },
     campers: [],
     loading: false,
     error: null,
