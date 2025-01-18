@@ -1,0 +1,30 @@
+.container_campers_list {
+    width: 888px;
+    height: 1568px;
+
+}
+
+.button_load_more {
+    
+    border-radius: 200px;
+    width: 166px;
+    height: 56px;
+    background: var(----white);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    color: var(--main-color);
+    border: 1px solid var(--gray-light);
+    border-radius: 200px;
+    width: 145px;
+    height: 56px;
+    transition: border 0.3s ease;
+}
+
+.button_load_more:hover,
+.button_load_more:focus {
+    border: 1px solid var(--button-color-hover);
+   
+}

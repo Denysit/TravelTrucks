@@ -5,8 +5,8 @@ import Filters from "../../components/Filters/Filters";
 export default function Catalog() {
   return (
     <div className={css.container}>
-      <CapmersList />
-      <Filters />
+      <Filters/>
+      <CapmersList/>
     </div>
   );
 }

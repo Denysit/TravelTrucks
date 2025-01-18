@@ -14,9 +14,8 @@
     --badges: #f2f4f7;
     --gray: #6c717b;
     --gray-light: #dadde1;
-    
+    --icons-color: #101828;
 }
-
 
 
 * {
@@ -64,6 +63,8 @@ img {
   display: block;
   max-width: 100%;
 }
+
+
 
 
 

@@ -26,7 +26,7 @@ export default function CapmersList() {
   };
 
   return (
-    <div>
+    <div className={css.container_campers_list}>
       <ul>
         {campers.map((camper, index) => (
           <li key={index}>
@@ -34,7 +34,9 @@ export default function CapmersList() {
           </li>
         ))}
       </ul>
-      <button onClick={handleLoadMore}>Load More</button>
+      <button onClick={handleLoadMore} className={css.button_load_more}>
+        Load More
+      </button>
       {status && <p>Loading...</p>}
       {error && <p>Error message: {error}</p>}
     </div>
