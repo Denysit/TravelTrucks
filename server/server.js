@@ -27,6 +27,9 @@ app.get("/catalog", async (req, res) => {
           camperLocation.includes(country) && camperLocation.includes(city)
         );
       });
+      if (campers.length === 0) {
+        return res.status(404).json({ message: "No campers found." });
+      }
     }
 
     if (AC) {
@@ -35,14 +38,16 @@ app.get("/catalog", async (req, res) => {
     }
 
     if (transmission) {
-      campers = campers.filter((camper) => camper.transmission.toLowerCase() === transmission.toLowerCase());
+      campers = campers.filter(
+        (camper) =>
+          camper.transmission.toLowerCase() === transmission.toLowerCase()
+      );
     }
-    
 
     if (kitchen) {
-        const kitchenBool = kitchen === "true";
-        campers = campers.filter((camper) => camper.kitchen === kitchenBool);
-      }
+      const kitchenBool = kitchen === "true";
+      campers = campers.filter((camper) => camper.kitchen === kitchenBool);
+    }
 
     if (TV) {
       const TVBool = TV === "true";
@@ -50,17 +55,18 @@ app.get("/catalog", async (req, res) => {
     }
 
     if (bathroom) {
-      const bathroomBool = bathroom ==="true";
+      const bathroomBool = bathroom === "true";
       campers = campers.filter((camper) => camper.bathroom === bathroomBool);
     }
 
     if (form) {
       const formValue = form.trim().toLowerCase();
-      campers = campers.filter((camper) => camper.form.toLowerCase() === formValue);
+      campers = campers.filter(
+        (camper) => camper.form.toLowerCase() === formValue
+      );
     }
-    
 
-    res.json(campers);
+    res.status(200).json(campers);
   } catch (error) {
     console.log("Error fetching campers:", error);
     res.status(500).json({ message: "Error fetching campers" });
