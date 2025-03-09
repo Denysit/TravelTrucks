@@ -1,7 +1,25 @@
 import css from "./Filters.module.css";
 import sprite from "../../assets/icons/sprite.svg";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchServerFilters } from "../../redux/operation";
+import { useState } from "react";
 
 export default function Filters() {
+  const dispatch = useDispatch();
+  const [location, setLocation] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSearch = () => {
+    if (location.length > 0) {
+      const params = { location: `Ukraine,${location}` };
+      setSearchParams(params);
+      dispatch(fetchServerFilters(params));
+    } else {
+      console.log("Please, enter location");
+    }
+  };
+
   return (
     <div className={css.container_filters}>
       <label htmlFor="location" className={css.label_location}>
@@ -16,6 +34,8 @@ export default function Filters() {
           type="text"
           placeholder="Kyiv, Ukraine"
           className={css.input_location}
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
       <p className={css.label_filters}>Filters</p>
@@ -75,7 +95,9 @@ export default function Filters() {
           <p>Alcove</p>
         </div>
       </div>
-      <button className={css.button_search}>Search</button>
+      <button className={css.button_search} onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 }

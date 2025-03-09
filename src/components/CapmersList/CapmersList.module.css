@@ -28,3 +28,10 @@
     border: 1px solid var(--button-color-hover);
    
 }
+
+.error_message {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}

@@ -26,19 +26,24 @@ export default function CapmersList() {
   };
 
   return (
-    <div className={css.container_campers_list}>
-      <ul>
-        {campers.map((camper, index) => (
-          <li key={index}>
-            <CampersCard camper={camper} />
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleLoadMore} className={css.button_load_more}>
-        Load More
-      </button>
+    <>
       {status && <p>Loading...</p>}
-      {error && <p>Error message: {error}</p>}
-    </div>
+      {error ? (
+        <p className={css.error_message}>{error}</p>
+      ) : (
+        <div className={css.container_campers_list}>
+          <ul>
+            {campers.map((camper, index) => (
+              <li key={index}>
+                <CampersCard camper={camper} />
+              </li>
+            ))}
+          </ul>
+          <button onClick={handleLoadMore} className={css.button_load_more}>
+            Load More
+          </button>
+        </div>
+      )}
+    </>
   );
 }
