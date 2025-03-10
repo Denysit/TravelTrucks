@@ -27,12 +27,12 @@ export default function CampersCard({ camper }) {
       setIsFavoriteTrue(false);
       const updatedFavorite = favorites.filter((item) => item.id !== camper.id);
       localStorage.setItem("Favorite_List", JSON.stringify(updatedFavorite));
-      console.log(`Кемпер ${camper.id} видалено з улюблених`);
+      alert(`Кемпер ${camper.id} видалено з улюблених`);
     } else {
       setIsFavoriteTrue(true);
       favorites.push(camper);
       localStorage.setItem("Favorite_List", JSON.stringify(favorites));
-      console.log(`Кемпер ${camper.id} додано до улюблених`);
+      alert(`Кемпер ${camper.id} додано до улюблених`);
     }
   };
 

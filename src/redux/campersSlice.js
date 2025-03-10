@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCampers } from "./operation";
-import { fetchServerFilters } from "./operation";
+import { fetchFilters } from "./operation";
 
 const campersSlice = createSlice({
   name: "campers",
@@ -23,6 +23,17 @@ const campersSlice = createSlice({
     setFilters(state, action) {
       state.filters[action.payload.key] = action.payload.value;
     },
+    clearFilters(state) {
+      state.filters = {
+        location: "",
+        AC: false,
+        transmission: "",
+        kitchen: false,
+        TV: false,
+        bathroom: false,
+        form: "",
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -38,15 +49,15 @@ const campersSlice = createSlice({
         state.error = action.payload;
       });
     builder
-      .addCase(fetchServerFilters.pending, (state) => {
+      .addCase(fetchFilters.pending, (state) => {
         state.loading = true;
         state.campers = [];
       })
-      .addCase(fetchServerFilters.fulfilled, (state, action) => {
+      .addCase(fetchFilters.fulfilled, (state, action) => {
         state.loading = false;
         state.campers = action.payload;
       })
-      .addCase(fetchServerFilters.rejected, (state, action) => {
+      .addCase(fetchFilters.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
@@ -54,3 +65,4 @@ const campersSlice = createSlice({
 });
 
 export default campersSlice.reducer;
+export const { setFilters, clearFilters } = campersSlice.actions;
