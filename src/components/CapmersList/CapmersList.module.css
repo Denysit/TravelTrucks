@@ -4,6 +4,14 @@
 
 }
 
+.container_error_message {
+    width: 888px;
+    height: 1568px;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .button_load_more {
     
     border-radius: 200px;

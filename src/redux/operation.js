@@ -22,28 +22,25 @@ const fetchCampers = createAsyncThunk(
   }
 );
 
-const fetchServerFilters = createAsyncThunk(
+const fetchFilters = createAsyncThunk(
   "campers/fetchFilteredCampers",
   async (filters, thunkApi) => {
     try {
       const params = new URLSearchParams(filters).toString();
-      const response = await fetch(`http://localhost:5000/catalog?${params}`);
-
+      const response = await api.get(`/campers?${params}`);
+      console.log(response);
       if (!response.ok) {
         if (response.status === 404) {
           return thunkApi.rejectWithValue("No campers found for this search.");
-        } else {
-          throw new Error("Failed to fetch");
         }
+      } else {
+        throw new Error("Failed to fetch");
       }
-
-      const data = await response.json();
-
-      return data;
+      return response.data.items;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
-export { fetchCampers, fetchServerFilters };
+export { fetchCampers, fetchFilters };

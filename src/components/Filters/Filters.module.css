@@ -80,12 +80,38 @@
     color: var(--white);
     border-radius: 200px;
     padding: 16px 60px;
-    width: 166px;
+    width: 164px;
     height: 56px;
     background: var(--button-color);
     border: none;
     margin-top: 40px;
     transition: background 0.3s ease;
+    justify-content: center;
+    align-items: center;
+  }
+  .button_delete {
+      font-family: var(--font-family);
+      font-weight: var(font-weight-medium);
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      border-radius: 200px;
+      padding: 16px 60px;
+      width: 164px;
+      height: 56px;
+      background: var(--main-color);
+      border: none;
+      margin-top: 40px;
+      transition: background 0.3s ease;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .container_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
   }
 
 
@@ -106,7 +132,12 @@
     border-radius: 12px;
     width: 112px;
     height: 96px;
+    transition: border-color 0.2s ease-in-out;
   }
+
+  .equipment.selected {
+      border-color: var(--button-color);
+    }
 
   .container_icons {
     display: flex;
