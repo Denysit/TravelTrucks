@@ -28,7 +28,6 @@ const fetchFilters = createAsyncThunk(
     try {
       const params = new URLSearchParams(filters).toString();
       const response = await api.get(`/campers?${params}`);
-      console.log(response);
       if (!response.ok) {
         if (response.status === 404) {
           return thunkApi.rejectWithValue("No campers found for this search.");
@@ -43,4 +42,22 @@ const fetchFilters = createAsyncThunk(
   }
 );
 
-export { fetchCampers, fetchFilters };
+const fetchOneCamper = createAsyncThunk(
+  "camper/fetchOne",
+  async (id, thunkApi) => {
+    try {
+      const response = await api.get(`/campers/${id}`);
+      console.log(response.data);
+      if (!response.ok) {
+        if (response.status === 404) {
+          return thunkApi.rejectWithValue("Failed to fetch");
+        }
+      }
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export { fetchCampers, fetchFilters, fetchOneCamper };
