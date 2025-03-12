@@ -1,4 +1,6 @@
 import css from "./CampersCard.module.css";
+import { selectFilters } from "../../redux/selectors";
+import { useSelector } from "react-redux";
 import sprite from "../../assets/icons/sprite.svg";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -14,6 +16,8 @@ export default function CampersCard({ camper }) {
 
   const navigate = useNavigate();
 
+  const characteristics = useSelector(selectFilters);
+
   const handleGetCamper = () => {
     navigate(`/catalog/${camper.id}`);
   };
@@ -27,12 +31,12 @@ export default function CampersCard({ camper }) {
       setIsFavoriteTrue(false);
       const updatedFavorite = favorites.filter((item) => item.id !== camper.id);
       localStorage.setItem("Favorite_List", JSON.stringify(updatedFavorite));
-      alert(`Кемпер ${camper.id} видалено з улюблених`);
+      console.log(`Кемпер ${camper.id} видалено з улюблених`);
     } else {
       setIsFavoriteTrue(true);
       favorites.push(camper);
       localStorage.setItem("Favorite_List", JSON.stringify(favorites));
-      alert(`Кемпер ${camper.id} додано до улюблених`);
+      console.log(`Кемпер ${camper.id} додано до улюблених`);
     }
   };
 
@@ -100,7 +104,7 @@ export default function CampersCard({ camper }) {
               </p>
             </div>
           )}
-          {camper.AC && (
+          {camper.AC === characteristics.AC && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"ac"}`} />
@@ -108,7 +112,7 @@ export default function CampersCard({ camper }) {
               <p className={css.text_description}>AC</p>
             </div>
           )}
-          {camper.bathroom && (
+          {camper.bathroom === characteristics.bathroom && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"bathroom"}`} />
@@ -117,7 +121,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.kitchen && (
+          {camper.kitchen === characteristics.kitchen && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"kitchen"}`} />
@@ -126,7 +130,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.TV && (
+          {camper.TV === characteristics.TV && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"tv"}`} />
@@ -135,7 +139,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.radio && (
+          {camper.radio === characteristics.radio && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"radio"}`} />
@@ -144,7 +148,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.refrigerator && (
+          {camper.refrigerator === characteristics.refrigerator && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"refrigerator"}`} />
@@ -153,7 +157,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.microwave && (
+          {camper.microwave === characteristics.microwave && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"microwave"}`} />
@@ -162,7 +166,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.gas && (
+          {camper.gas === characteristics.gas && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"gas"}`} />
@@ -171,7 +175,7 @@ export default function CampersCard({ camper }) {
             </div>
           )}
 
-          {camper.water && (
+          {camper.water === characteristics.water && (
             <div className={css.card_description}>
               <svg width={20} height={20}>
                 <use href={`${sprite}#${"water"}`} />
