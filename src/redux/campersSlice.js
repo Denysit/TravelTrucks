@@ -16,7 +16,7 @@ const campersSlice = createSlice({
       form: "",
     },
     campers: [],
-    detailCamper: {},
+    camper: {},
     loading: false,
     error: null,
   },
@@ -68,7 +68,7 @@ const campersSlice = createSlice({
       })
       .addCase(fetchOneCamper.fulfilled, (state, action) => {
         state.loading = false;
-        state.detailCamper = action.payload;
+        state.camper = action.payload;
       })
       .addCase(fetchOneCamper.rejected, (state, action) => {
         state.loading = false;

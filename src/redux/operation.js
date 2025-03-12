@@ -48,11 +48,6 @@ const fetchOneCamper = createAsyncThunk(
     try {
       const response = await api.get(`/campers/${id}`);
       console.log(response.data);
-      if (!response.ok) {
-        if (response.status === 404) {
-          return thunkApi.rejectWithValue("Failed to fetch");
-        }
-      }
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

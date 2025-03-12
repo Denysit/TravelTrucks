@@ -2,4 +2,4 @@ export const selectAllCampers = (state) => state.campers;
 export const selectCampersStatus = (state) => state.loading;
 export const selectCampersError = (state) => state.error;
 export const selectFilters = (state) => state.filters;
-export const selectDetailCamper = (state) => state.detailCamper;
+export const selectCamper = (state) => state.camper;
