@@ -28,14 +28,6 @@
     gap: 50px;
 }
 
-/* .image {
-    width: 292px;
-    height: 312px;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-} */
-
 .image {
 object-fit: cover;
     transform: scale(0.8);
