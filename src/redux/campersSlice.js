@@ -64,6 +64,7 @@ const campersSlice = createSlice({
       });
     builder
       .addCase(fetchOneCamper.pending, (state) => {
+        state.camper = {};
         state.loading = true;
       })
       .addCase(fetchOneCamper.fulfilled, (state, action) => {
