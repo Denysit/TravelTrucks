@@ -25,7 +25,7 @@ export default function DetailInfoCampers() {
           <svg width={16} height={16}>
             <use href={`${sprite}#${"Rating"}`} />
           </svg>
-          <p>
+          <p className={css.ratingText}>
             {camper.rating} ({camper.reviews?.length} reviews)
           </p>
           <svg width={16} height={16}>
@@ -43,7 +43,6 @@ export default function DetailInfoCampers() {
             </div>
           ))}
         </div>
-
         <p className={css.description}>{camper.description}</p>
       </div>
     </div>

@@ -1,0 +1,7 @@
+.container_detail_page {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin: 50px 64px;
+        gap: 40px;
+}
