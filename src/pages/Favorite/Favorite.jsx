@@ -1,30 +1,12 @@
-import css from "./CapmersList.module.css";
-import {
-  selectAllCampers,
-  selectCampersStatus,
-  selectCampersError,
-} from "../../redux/selectors";
-import CampersCard from "../CampersCard/CampersCard";
-import { fetchCampers } from "../../redux/operation";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import css from "./Favorite.module.css";
+import CampersCard from "../../components/CampersCard/CampersCard";
 import { useSpring, animated } from "react-spring";
+import { Link } from "react-router-dom";
 
 export default function CapmersList() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const favorites = JSON.parse(localStorage.getItem("Favorite_List")) || [];
 
-  const dispatch = useDispatch();
-  const status = useSelector(selectCampersStatus);
-  const error = useSelector(selectCampersError);
-  const campers = useSelector(selectAllCampers);
-
-  useEffect(() => {
-    dispatch(fetchCampers({ page: currentPage }));
-  }, [dispatch, currentPage]);
-
-  const handleLoadMore = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+  const error = favorites.length === 0;
 
   const camperSpring = useSpring({
     from: { x: -100, opacity: 1 }, // Start on the right, fully visible
@@ -44,9 +26,18 @@ export default function CapmersList() {
         >
           {/* Text */}
           <h3 style={{ color: "#333", marginBottom: "20px" }}>
-            Ooopps, Campers Not Found
+            No campers found in favorites, add new camper
+            <Link
+              to="/catalog"
+              style={{
+                color: "#007bff",
+                textDecoration: "underline",
+                marginLeft: "5px",
+              }}
+            >
+              here
+            </Link>
           </h3>
-
           {/* Animated SVG Camper */}
           <animated.svg
             width="150"
@@ -98,15 +89,12 @@ export default function CapmersList() {
       ) : (
         <div className={css.container_campers_list}>
           <ul className={css.list}>
-            {campers.map((camper, index) => (
+            {favorites.map((camper, index) => (
               <li key={index}>
                 <CampersCard camper={camper} />
               </li>
             ))}
           </ul>
-          <button onClick={handleLoadMore} className={css.button_load_more}>
-            Load More
-          </button>
         </div>
       )}
     </>

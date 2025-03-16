@@ -1,0 +1,27 @@
+.container_campers_list {
+    width: 888px;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.container_error_message {
+    width: 888px;
+    height: 1568px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.error_message {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}

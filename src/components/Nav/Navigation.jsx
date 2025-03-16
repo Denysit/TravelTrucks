@@ -19,6 +19,9 @@ export default function Navigation() {
         <NavLink to="/catalog" className={buildLinkClass}>
           Catalog
         </NavLink>
+        <NavLink to="/favorite" className={buildLinkClass}>
+          Favorite
+        </NavLink>
       </nav>
     </div>
   );

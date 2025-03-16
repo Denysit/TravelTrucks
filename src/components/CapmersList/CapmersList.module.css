@@ -1,7 +1,13 @@
 .container_campers_list {
     width: 888px;
-    height: 1568px;
+    /* height: 1568px; */
+    min-height: 100vh;
+}
 
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .container_error_message {
@@ -13,7 +19,6 @@
 
 
 .button_load_more {
-    
     border-radius: 200px;
     width: 166px;
     height: 56px;
@@ -29,6 +34,7 @@
     width: 145px;
     height: 56px;
     transition: border 0.3s ease;
+    cursor: pointer;
 }
 
 .button_load_more:hover,

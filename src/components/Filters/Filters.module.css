@@ -88,7 +88,10 @@
     transition: background 0.3s ease;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
+
+
   .button_delete {
       font-family: var(--font-family);
       font-weight: var(font-weight-medium);
@@ -106,6 +109,7 @@
       transition: background 0.3s ease;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
   }
 
   .container_buttons {
@@ -133,6 +137,7 @@
     width: 112px;
     height: 96px;
     transition: border-color 0.2s ease-in-out;
+    cursor: pointer;
   }
 
   .equipment.selected {
