@@ -1,6 +1,6 @@
 import css from "./CamperDetails.module.css";
 import { fetchOneCamper } from "../../redux/operation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectCamper } from "../../redux/selectors";
@@ -10,13 +10,37 @@ export default function DetailInfoCampers() {
   const camper = useSelector(selectCamper);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   useEffect(() => {
     dispatch(fetchOneCamper(id));
   }, [dispatch, id]);
 
   console.log(camper);
+
+  const handleNext = useCallback(() => {
+    setSelectedImageIndex((prev) =>
+      Math.min(prev + 1, camper.gallery?.length - 1)
+    );
+  }, [camper.gallery?.length]);
+
+  const handlePrev = useCallback(() => {
+    setSelectedImageIndex((prev) => Math.max(prev - 1, 0));
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedImageIndex === null) return;
+      if (e.key === "Escape") setSelectedImageIndex(null);
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }),
+    [selectedImageIndex, handlePrev, handleNext];
 
   return (
     <div>
@@ -42,7 +66,7 @@ export default function DetailInfoCampers() {
             <div
               key={index}
               className={css.image_wrapper}
-              onClick={() => setSelectedImage(photo.original)}
+              onClick={() => setSelectedImageIndex(index)}
             >
               <img className={css.image} src={photo.thumb} alt="Photo" />
             </div>
@@ -50,17 +74,41 @@ export default function DetailInfoCampers() {
         </div>
         <p className={css.description}>{camper.description}</p>
       </div>
+
       {/* Modal */}
-      {selectedImage && (
-        <div className={css.modal} onClick={() => setSelectedImage(null)}>
-          <div className={css.modalContent}>
-            <img src={selectedImage} alt="Full-size Camper Photo" />
+      {selectedImageIndex !== null && (
+        <div className={css.modal} onClick={() => setSelectedImageIndex(null)}>
+          <div
+            className={css.modalContent}
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+          >
+            <img
+              src={camper.gallery[selectedImageIndex].original}
+              alt="Full-size Camper Photo"
+            />
             <button
               className={css.closeButton}
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedImageIndex(null)}
             >
-              × {/* Close icon */}
+              ×
             </button>
+            <button
+              className={css.prevButton}
+              onClick={handlePrev}
+              disabled={selectedImageIndex === 0}
+            >
+              ←
+            </button>
+            <button
+              className={css.nextButton}
+              onClick={handleNext}
+              disabled={selectedImageIndex === camper.gallery.length - 1}
+            >
+              →
+            </button>
+            <p className={css.imageCounter}>
+              {selectedImageIndex + 1}/{camper.gallery?.length}
+            </p>
           </div>
         </div>
       )}
