@@ -1,6 +1,6 @@
 import css from "./CamperDetails.module.css";
 import { fetchOneCamper } from "../../redux/operation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectCamper } from "../../redux/selectors";
@@ -10,6 +10,7 @@ export default function DetailInfoCampers() {
   const camper = useSelector(selectCamper);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     dispatch(fetchOneCamper(id));
@@ -38,13 +39,31 @@ export default function DetailInfoCampers() {
       <div className={css.container_photo_info}>
         <div className={css.container_photo}>
           {camper.gallery?.map((photo, index) => (
-            <div key={index} className={css.image_wrapper}>
+            <div
+              key={index}
+              className={css.image_wrapper}
+              onClick={() => setSelectedImage(photo.original)}
+            >
               <img className={css.image} src={photo.thumb} alt="Photo" />
             </div>
           ))}
         </div>
         <p className={css.description}>{camper.description}</p>
       </div>
+      {/* Modal */}
+      {selectedImage && (
+        <div className={css.modal} onClick={() => setSelectedImage(null)}>
+          <div className={css.modalContent}>
+            <img src={selectedImage} alt="Full-size Camper Photo" />
+            <button
+              className={css.closeButton}
+              onClick={() => setSelectedImage(null)}
+            >
+              × {/* Close icon */}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
