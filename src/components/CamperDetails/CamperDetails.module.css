@@ -126,6 +126,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: ease-out 0.3s;
 }
 
 .prevButton,
@@ -144,6 +145,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: ease-out 0.3s;
 }
 
 .prevButton {
@@ -160,6 +162,13 @@
     cursor: not-allowed;
 }
 
+.prevButton:hover,
+.nextButton:hover,
+.closeButton:hover{
+    background-color: var(--gray);
+    color: var(--white);
+}
+
 .imageCounter {
     position: absolute;
     bottom: 10px;
@@ -170,6 +179,29 @@
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
+    transition: ease-out 0.3s;
+}
+
+.backButton {
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: var(--gray-light);
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: ease-out 0.3s;
+}
+
+
+.backButton:hover {
+    background-color: var(--gray);
+    color: var(--white);
 }
 
 

@@ -5,12 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectCamper } from "../../redux/selectors";
 import sprite from "../../assets/icons/sprite.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailInfoCampers() {
   const camper = useSelector(selectCamper);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const navigate = useNavigate();
+
+  const favorites = JSON.parse(localStorage.getItem("Favorite_List")) || [];
+  console.log(favorites);
+
+  const isFavorite = favorites.some((item) => item.id === camper.id);
+
+  // if (isFavorite) {
+  //   setIsFavoriteTrue(false);
+  //   const updatedFavorite = favorites.filter((item) => item.id !== camper.id);
+  //   localStorage.setItem("Favorite_List", JSON.stringify(updatedFavorite));
+  //   console.log(`Кемпер ${camper.id} видалено з улюблених`);
+  // } else {
+  //   setIsFavoriteTrue(true);
+  //   favorites.push(camper);
+  //   localStorage.setItem("Favorite_List", JSON.stringify(favorites));
+  //   console.log(`Кемпер ${camper.id} додано до улюблених`);
+  // }
 
   useEffect(() => {
     dispatch(fetchOneCamper(id));
@@ -44,6 +63,22 @@ export default function DetailInfoCampers() {
 
   return (
     <div>
+      <button className={css.backButton} onClick={() => navigate("/catalog")}>
+        ←
+      </button>
+      {/* <div>
+        <svg
+          width={20}
+          height={20}
+          onClick={toggleFavorite}
+          style={{
+            cursor: "pointer",
+            troke: isFavoriteTrue ? "red" : "gray",
+          }}
+        >
+          <use href={`${sprite}#${"favorite_icons"}`} />
+        </svg>
+      </div> */}
       <div className={css.main_info}>
         <h2>{camper.name}</h2>
         <div className={css.rating}>
