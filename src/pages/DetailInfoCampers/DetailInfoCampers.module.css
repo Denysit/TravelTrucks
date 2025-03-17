@@ -3,5 +3,30 @@
         flex-wrap: nowrap;
         justify-content: center;
         padding: 30px 64px;
-        gap: 40px;
+        flex-direction: column;
 }
+
+
+.navLinks {
+        display: flex;
+        padding: 0;
+        margin-top: 40px;
+}
+
+.navLink {
+        margin-right: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: blue;
+}
+
+.navLink:hover {
+        color: navy;
+}
+
+.line {
+        width: 100%;
+        height: 2px;
+        border: 1px solid var(--gray-light);
+        margin-bottom: 20px;
+  }
