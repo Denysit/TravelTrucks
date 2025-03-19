@@ -7,7 +7,7 @@ import { selectCamper } from "../../redux/selectors";
 import sprite from "../../assets/icons/sprite.svg";
 import { useNavigate } from "react-router-dom";
 
-export default function DetailInfoCampers() {
+export default function DetailInfoCampers({ reviewsRef }) {
   const camper = useSelector(selectCamper);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -71,6 +71,12 @@ export default function DetailInfoCampers() {
   }),
     [selectedImageIndex, handlePrev, handleNext];
 
+  const handleScrollToReviews = () => {
+    if (reviewsRef.current) {
+      reviewsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className={css.container_detail_page}>
       <div className={css.container_top_info}>
@@ -79,7 +85,7 @@ export default function DetailInfoCampers() {
         </button>
         <div className={css.main_info}>
           <h1>{camper.name}</h1>
-          <div className={css.rating}>
+          <div className={css.rating} onClick={handleScrollToReviews}>
             <svg width={16} height={16}>
               <use href={`${sprite}#${"Rating"}`} />
             </svg>
